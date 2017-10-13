@@ -1,0 +1,21 @@
+server:
+  port: 8193
+
+turbine:
+  app-config: account,gateway,order,product,tcc
+  aggregator:
+    clusterConfig: prontera
+  cluster-name-expression: metadata['cluster']
+
+eureka:
+  client:
+   service-url:
+      defaultZone: http://localhost:1111/eureka/
+
+spring:
+  application:
+    name: hystrix
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true

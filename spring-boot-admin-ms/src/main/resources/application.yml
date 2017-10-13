@@ -1,0 +1,21 @@
+server:
+  port: 7020
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1111/eureka/
+    registry-fetch-interval-seconds: 5
+
+spring:
+  application:
+    name: spring-boot-admin
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
+  boot:
+    admin:
+      turbine:
+        url: http://localhost:8193/hystrix/turbine.stream
+        clusters: prontera

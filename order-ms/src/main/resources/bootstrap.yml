@@ -1,0 +1,53 @@
+server:
+  port: 8295
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1111/eureka/
+
+spring:
+  application:
+    name: order
+  datasource:
+    username: root
+    password: 123456
+    url: 'jdbc:mysql://localhost:3306/order?useLegacyDatetimeCode=false&serverTimezone=Asia/Hong_Kong&useSSL=false'
+  rabbitmq:
+      host: localhost
+      port: 15672
+      username: guest
+      password: guest
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
+    config:
+      discovery:
+        enabled: true
+        service-id: 'config-server'
+      fail-fast: true
+  zipkin:
+    base-url: http://localhost:9411/
+
+mybatis:
+  type-handlers-package: 'com.github.prontera.domain.type.handler'
+  mapper-locations: 'classpath*:mapper/**/*Mapper.xml'
+  type-aliases-package: 'com.github.prontera.domain'
+ribbon:
+  MaxAutoRetries: 1
+  MaxAutoRetriesNextServer: 3
+  OkToRetryOnAllOperations: true
+  ConnectTimeout: 1500
+  ReadTimeout: 2000
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 2000
+flyway:
+  enabled: true
+  baseline-on-migrate: true
+  validate-on-migrate: false
